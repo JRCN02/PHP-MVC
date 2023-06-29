@@ -1,7 +1,19 @@
 <?php
-include_once '../config/conection.php';
-$conex = new mysqli($host,$user,$pass,$db);
-    if ($conex->connect_error) {
-        die("Error de conexión: " . $conex->connect_error);
+    class DBase{
+        private $db;
+        private $host;
+        private $user;
+        private $pass;
+        public $conect;
+        public function __construct(){
+            $this->db = 'php-mvc';
+            $this->host = 'localhost';
+            $this->user = 'root';
+            $this->pass = '';
+
+            $this->conect = new mysqli($this->host,$this->user,$this->pass,$this->db);
+            if ($this->conect->connect_error) {
+                die("Error de conexión: " . $this->conect->connect_error);
+            }
+        }
     }
-?>

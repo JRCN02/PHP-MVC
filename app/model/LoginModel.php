@@ -1,13 +1,17 @@
 <?php 
-    class LoginModel{
-
+    class LoginModel extends DBase{
+    
+        public $cco;
+        public function __construct(){
+            $this->cco = new DBase();
+        }
         public function check($usu, $pas){
-            include_once 'db/conection.php';
+
             $query = "SELECT * FROM usuarios WHERE user ='$usu' AND  pass='$pas'";
-            $result = $conex->query($query);
+            $result = $this->cco->conect->query($query);
             // Verificar si se obtuvieron resultados
             if ($result->num_rows > 0) {
-                return $result;
+                return $result->fetch_assoc();
             } 
             return "";
         }

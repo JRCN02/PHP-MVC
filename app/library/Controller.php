@@ -2,10 +2,11 @@
     class Controller{
     
         public function modelo($model){
-            require_once '../app/model'.$model.'.php';
+            require_once '../app/model/'.$model.'Model.php';
             //instanciar modelo
-            
-            return new $model;
+            $model = $model.'Model';
+            //print_r($model);
+            return new $model();
         }
 
         public function loadView($vist,$datos = []){
